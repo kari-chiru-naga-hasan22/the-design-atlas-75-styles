@@ -3,22 +3,29 @@ import { STYLES_DATA } from './data/stylesData';
 import { STYLE_COMPONENTS } from './styles';
 import { GalleryHome } from './components/gallery/GalleryHome';
 import { AtlasHud } from './components/shared/AtlasHud';
+import { LiquidRealityPage } from './components/liquid/LiquidRealityPage';
 import { StyleMeta } from './types';
 import { ArrowLeft, Compass, Sparkles } from 'lucide-react';
 
 export function App() {
   // Extract initial style from hash or pathname
   const getStyleFromLocation = (): string | null => {
-    // Check hash first: #/styles/:id or #:id
+    // Check hash first: #/styles/:id or #:id or #/liquid-reality
     const hash = window.location.hash;
     if (hash) {
+      if (hash.includes('liquid-reality') || hash.includes('liquid')) {
+        return 'liquid-reality';
+      }
       const match = hash.match(/#(?:(?:\/styles\/)|(?:\/))?([a-zA-Z0-9_-]+)/);
       if (match && match[1] && match[1] !== 'home') {
         return match[1];
       }
     }
-    // Check pathname: /styles/:id
+    // Check pathname: /styles/:id or /liquid-reality
     const pathname = window.location.pathname;
+    if (pathname.includes('liquid-reality') || pathname.includes('liquid')) {
+      return 'liquid-reality';
+    }
     const pathMatch = pathname.match(/\/styles\/([a-zA-Z0-9_-]+)/);
     if (pathMatch && pathMatch[1]) {
       return pathMatch[1];
@@ -45,17 +52,21 @@ export function App() {
 
   // Find style metadata
   const currentStyleMeta = useMemo<StyleMeta | undefined>(() => {
-    if (!activeStyleId) return undefined;
+    if (!activeStyleId || activeStyleId === 'liquid-reality') return undefined;
     return (
       STYLES_DATA.find((s) => s.id === activeStyleId) ||
       STYLES_DATA.find((s) => s.num.toString() === activeStyleId)
     );
   }, [activeStyleId]);
 
-  // Handle navigation to a style
+  // Handle navigation to a style or liquid reality
   const handleSelectStyle = (styleId: string) => {
     setActiveStyleId(styleId);
-    window.history.pushState(null, '', `#/styles/${styleId}`);
+    if (styleId === 'liquid-reality') {
+      window.history.pushState(null, '', `#/liquid-reality`);
+    } else {
+      window.history.pushState(null, '', `#/styles/${styleId}`);
+    }
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
@@ -70,6 +81,11 @@ export function App() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [activeStyleId]);
+
+  // Flagship Project: Liquid Reality 3D Experience
+  if (activeStyleId === 'liquid-reality' || activeStyleId === 'liquid') {
+    return <LiquidRealityPage onBackToAtlas={handleBackToGallery} />;
+  }
 
   // If on gallery home
   if (!activeStyleId) {

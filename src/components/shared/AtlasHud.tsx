@@ -137,6 +137,15 @@ export const AtlasHud: React.FC<AtlasHudProps> = ({ currentStyle, onNavigate, on
           {/* Right: Creative Brief & Interactive Sparkle */}
           <div className="flex items-center gap-2">
             <button
+              onClick={() => onNavigate('liquid-reality')}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-violet-600/30 to-cyan-600/30 hover:from-violet-600/50 hover:to-cyan-600/50 border border-cyan-400/30 text-xs font-medium text-cyan-200 shadow-sm transition-all cursor-pointer"
+              title="Launch Flagship Liquid Reality 3D Experience"
+            >
+              <Sparkles size={14} className="text-cyan-400 animate-pulse" />
+              <span className="hidden sm:inline">Liquid Reality (3D)</span>
+            </button>
+
+            <button
               onClick={() => setIsBriefOpen(true)}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-blue-600/30 to-purple-600/30 hover:from-blue-600/50 hover:to-purple-600/50 border border-blue-400/30 text-xs font-medium text-white shadow-sm transition-all cursor-pointer"
             >

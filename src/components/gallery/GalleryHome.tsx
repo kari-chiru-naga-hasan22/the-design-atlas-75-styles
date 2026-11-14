@@ -175,17 +175,49 @@ export const GalleryHome: React.FC<GalleryHomeProps> = ({ onSelectStyle }) => {
           {/* Action CTAs */}
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <button
+              onClick={() => onSelectStyle('liquid-reality')}
+              className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-violet-600 via-pink-600 to-cyan-500 hover:from-violet-500 hover:to-cyan-400 text-white font-bold text-sm shadow-xl shadow-violet-500/30 hover:scale-105 transition-all cursor-pointer"
+            >
+              <Sparkles size={16} /> Launch Liquid Reality (3D WebGL)
+            </button>
+            <button
               onClick={handleRandomStyle}
-              className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold text-sm shadow-lg shadow-purple-500/20 hover:scale-105 transition-all cursor-pointer"
+              className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white/90 hover:text-white font-semibold text-sm shadow-lg hover:scale-105 transition-all cursor-pointer"
             >
               <Shuffle size={16} /> Surprise Me (Random Style)
             </button>
             <a
               href="#exhibition"
-              className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white/90 hover:text-white font-medium text-sm backdrop-blur-sm transition-all"
+              className="flex items-center gap-2 px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/80 hover:text-white font-medium text-sm backdrop-blur-sm transition-all"
             >
-              <Compass size={16} /> Explore All 75 Works
+              <Compass size={16} /> Explore 75 Works
             </a>
+          </div>
+
+          {/* Flagship WebGPU Showcase Banner: LIQUID REALITY */}
+          <div className="mt-12 max-w-4xl mx-auto p-1 rounded-3xl bg-gradient-to-r from-violet-600 via-pink-500 to-cyan-400 shadow-[0_0_50px_rgba(139,92,246,0.25)]">
+            <div className="bg-[#090A12] rounded-[22px] p-6 md:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-left">
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-mono text-cyan-300">
+                  <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
+                  FLAGSHIP 3D WEBGPU IMMERSIVE EXHIBITION
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-black font-space text-white">
+                  PROJECT: <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-pink-400 to-cyan-300">LIQUID REALITY</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-white/70 max-w-lg font-light leading-relaxed">
+                  Inspired by liquidGL: Real-time 3D refraction, interactive draggable lenses, 9-dial optics studio, and Apple-grade spatial glass interface components.
+                </p>
+              </div>
+
+              <button
+                onClick={() => onSelectStyle('liquid-reality')}
+                className="px-6 py-3.5 rounded-2xl bg-white text-black font-mono text-xs font-bold uppercase tracking-wider hover:bg-white/90 shadow-[0_0_25px_rgba(255,255,255,0.4)] transition-all hover:scale-105 shrink-0 flex items-center gap-2 cursor-pointer"
+              >
+                <Sparkles size={16} className="text-violet-600" />
+                <span>Launch Experience</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
